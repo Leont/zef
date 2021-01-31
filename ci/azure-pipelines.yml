@@ -39,7 +39,7 @@ stages:
         - script: |
             curl https://rakubrew.org/install-on-perl.sh -o install-on-perl.sh
             sh install-on-perl.sh
-            eval "$(/Users/runner/.rakubrew/bin/rakubrew init Bash)"
+            eval "$HOME/.rakubrew/bin/rakubrew init Bash"
             rakubrew download
             raku -I. bin/zef --version
             raku -I. xt/install.t

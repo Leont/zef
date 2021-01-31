@@ -39,6 +39,7 @@ stages:
         - script: |
             curl https://rakubrew.org/install-on-perl.sh -o install-on-perl.sh
             sh install-on-perl.sh
+            eval "$(/Users/runner/.rakubrew/bin/rakubrew init Bash)"
             rakubrew download
             raku -I. bin/zef --version
             raku -I. xt/install.t
@@ -47,8 +48,8 @@ stages:
           displayName: Test Zef
         - pwsh: |
             ${{ variables.PWSH_DEV }}
-            $ProgressPreference = 'SilentlyContinue'; Invoke-WebRequest https://rakubrew.org/install-on-powershell.ps1 -OutFile install-on-powershell.ps1
-            powershell install-on-powershell.ps1
+            Invoke-WebRequest https://rakubrew.org/install-on-powershell.ps1 -OutFile install-on-powershell.ps1
+            powershell -Command install-on-powershell.ps1
             rakubrew download
             raku -I. bin/zef --version
             raku -I. xt/install.t
